@@ -7,7 +7,7 @@
       lines="two"
     >
       <v-list-item-subtitle>
-        <div class="text-uppercase text-h6">{{ commit.name }}</div>
+        <div class="text-uppercase text-h5">{{ commit.name }}</div>
       </v-list-item-subtitle>
 
       <v-list-item-title>
@@ -17,7 +17,7 @@
       </v-list-item-title>
 
       <v-list-item-subtitle>
-        <div class="date">{{ date(commit) }}</div>
+        <div class="date">{{ commit.date }}</div>
       </v-list-item-subtitle>
     </v-list-item>
   </v-list>
@@ -30,22 +30,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-const date = (commit) => {
-  const formatDate = (isoString) => {
-    const date = new Date(isoString);
-    const options = {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-      timeZone: "UTC",
-    };
-    return date.toLocaleDateString("ru-RU", options);
-  };
-  const date = formatDate(commit.date);
-
-  return `${date}`;
-};
 </script>
 
 <style scoped>
@@ -53,26 +37,21 @@ const date = (commit) => {
   padding: 0;
   text-align: left;
 }
-
 .commit-item {
-  padding-left: 0;
-  margin-left: 0;
-  align-items: flex-start;
-  position: relative;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
 }
-
 .date {
   position: absolute;
-  top: 8px;
-  right: 0;
+  top: 2px;
+  right: 15px;
 }
-
 .email-link {
   color: inherit;
   text-decoration: none;
 }
 .email-link:hover {
-  color: #ff5252; /* Красный цвет из палитры Vuetify */
+  color: #ff5252;
   text-decoration: underline;
 }
 </style>
